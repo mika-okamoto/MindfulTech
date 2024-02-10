@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Survey.css'; // Import CSS file for styling
+import './survey.css'; // Import CSS file for styling
 
 const Survey = () => {
   const [age, setAge] = useState('');
