@@ -1,0 +1,24 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/Frontend/mindfultech/node_modules
+/Frontend/node_modules
+/Frontend/mindfultech/.pnp
+/Frontend/mindfultech/.pnp.js
+
+# testing
+/Frontend/mindfultech//coverage
+
+# production
+/Frontend/mindfultech//build
+
+# misc
+/Frontend/mindfultech/.DS_Store
+/Frontend/mindfultech/.env.local
+/Frontend/mindfultech/.env.development.local
+/Frontend/mindfultech/.env.test.local
+/Frontend/mindfultech/.env.production.local
+
+/Frontend/mindfultech/npm-debug.log*
+/Frontend/mindfultech/yarn-debug.log*
+/Frontend/mindfultech/yarn-error.log*
