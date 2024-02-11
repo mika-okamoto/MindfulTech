@@ -5,6 +5,7 @@
 /Frontend/node_modules
 /Frontend/mindfultech/.pnp
 /Frontend/mindfultech/.pnp.js
+/.idea
 
 # testing
 /Frontend/mindfultech//coverage
