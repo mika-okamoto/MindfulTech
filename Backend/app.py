@@ -16,10 +16,11 @@ class Server:
 @app.route("/predict", methods=['POST'])
 def handle_prediction_request():
     content = request.json
-    # might need to process content into correct format
-    response = classify.predict(content, indexTrain)
+    # TODO: Process input json into list of values for input into model
 
+    response = classify.predict(content, indexTrain)
     # Response is 'Anxiety', 'Mood', or 'None'
+    indexLLMModel[1] = []
     indexLLMModel[3] = response
     return jsonify({"content": response})
 
@@ -27,6 +28,8 @@ def handle_prediction_request():
 @app.route("/chat", methods=['POST'])
 def handle_chat_request():
     content = request.json
+    # TODO: Process chat content into input string
+
     response = chat.chat(content, indexLLMModel)
     return jsonify({"content": response})
 
@@ -34,7 +37,7 @@ def handle_chat_request():
 @app.route("/reset", methods=['GET'])
 def reset():
     indexLLMModel[1] = []
-    indexLLMModel[3] = 'Anxiety'
+    indexLLMModel[3] = None
 
 
 if __name__ == "__main__":

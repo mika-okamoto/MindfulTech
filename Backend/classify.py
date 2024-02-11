@@ -25,8 +25,9 @@ def train():
 
 
 def predict(x_input, model):
-    return model.predict(x_input)
-
-
-
-
+    mappings = {
+        -1: "None",
+        1: "Anxiety",
+        2: "Mood"
+    }
+    return mappings[model.predict(x_input)]
