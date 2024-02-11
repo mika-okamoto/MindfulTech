@@ -1,9 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
+from flask_cors import CORS
+
 import classify
 import chat
 
 app = Flask(__name__)
-
+CORS(app)
 
 class Server:
     def __init__(self):
@@ -13,39 +15,39 @@ class Server:
     indexLLMModel = None
 
 
+
 @app.route("/predict", methods=['POST'])
 def handle_prediction_request():
     content = request.json
     # TODO: Process input json into list of values for input into model
 
-    response = classify.predict(content, indexTrain)
+    response = classify.predict(content, Server.indexPredict)
     # Response is 'Anxiety', 'Mood', or 'None'
-    indexLLMModel[1] = []
-    indexLLMModel[3] = response
+    Server.indexLLMModel[1] = []
+    Server.indexLLMModel[3] = response
     return jsonify({"content": response})
 
 
 @app.route("/chat", methods=['POST'])
 def handle_chat_request():
     content = request.json
-    # TODO: Process chat content into input string
-
-    response = chat.chat(content, indexLLMModel)
+    response = chat.chat(content.get('text'), Server.indexLLMModel)
+    print(response)
     return jsonify({"content": response})
 
 
 @app.route("/reset", methods=['GET'])
 def reset():
-    indexLLMModel[1] = []
-    indexLLMModel[3] = None
+    Server.indexLLMModel[1] = []
+    Server.indexLLMModel[3] = None
 
 
 if __name__ == "__main__":
     # launch server
+    Server.indexPredict = classify.train()
+    Server.indexLLMModel = chat.initModel()
     app.run()
 
     # initialize active models
-    indexTrain = classify.train()
-    indexLLMModel = chat.initModel()
 
-    print(chat.chat("Could you tell me more about phobias?",indexLLMModel))
+
