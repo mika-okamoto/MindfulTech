@@ -110,7 +110,7 @@ const Survey = () => {
 
     try {
       const result = await submitSurvey({"1": age, "2" : question2,
-      "3" : question3, "4" : question4, "6" : question6,
+      "3" : question3, "4" : question4, "5" : "no", "6" : question6,
       "7" : question7, "8" : question8, "9" : question9, "10" : question10,
       "11" : question11, "12" : question12})
 
@@ -247,11 +247,11 @@ const Survey = () => {
           <div id="right">
             <select id="question10" value={question10} onChange={handleQuestion10Change}>
               <option value="">Select...</option>
-              <option value="strong no">Strong no</option>
-              <option value="little no">Little no</option>
+              <option value="strong no">No, definitely not</option>
+              <option value="little no">No, leaning maybe</option>
               <option value="maybe">Maybe</option>
-              <option value="little yes">Little yes</option>
-              <option value="strong yes">Strong yes</option>
+              <option value="little yes">Yes, leaning maybe</option>
+              <option value="strong yes">Yes, it definitely would</option>
             </select>
             {/* Error message for question 10 */}
           </div>
@@ -262,11 +262,11 @@ const Survey = () => {
             <select id="question11" value={question11} onChange={handleQuestion11Change}>
               <option value="">Select...</option>
               <option value="n/a">N/A</option>
-              <option value="not open at all">Not open at all</option>
-              <option value="somewhat not open">Somewhat not open</option>
+              <option value="not open at all">Not willing at all</option>
+              <option value="somewhat not open">Somewhat not willing</option>
               <option value="neutral">Neutral</option>
-              <option value="somewhat open">Somewhat open</option>
-              <option value="very open">Very open</option>
+              <option value="somewhat open">Somewhat willing</option>
+              <option value="very open">Very willing</option>
             </select>
             {/* Error message for question 11 */}
           </div>
@@ -288,8 +288,7 @@ const Survey = () => {
           <button type="submit" >Submit</button>
         </form>
         <div>
-          <h2>Diagnosis:</h2>
-          <p>{diagnosis}</p>
+          {!(diagnosis !== 'None' && diagnosis !== 'Anxiety' && diagnosis !== 'Mood') && <h2>You may be at risk for: {diagnosis}</h2>}
           {diagnosis === 'None' && <p>We believe that given your responses, you’re at a low risk for the most common mood and anxiety disorders. If you feel that you need additional support, please speak to a mental health professional or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
           {diagnosis === 'Anxiety' && <p>We believe that you’re at a heightened risk for anxiety disorders, such as general or social anxiety disorder. Work environments are important determinants of occupational and social wellness; poorly managed stress can truly take its toll on our bodies. If you feel that stress or anxiety prevents you from living your life to its fullest, please reach out to a mental health professional, or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
           {diagnosis === 'Mood' && <p>We believe that you’re at a heightened risk for mood disorders, such as depression or seasonal affective disorder. Work-related stress, when poorly managed, can contribute to fatigue, anxiety, and other symptoms of depression – and given the intense stigma surrounding mental health in tech, it is often difficult for people to seek care. If you feel that your mood prevents you from living your life to its fullest, please reach out to a mental health professional, or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
