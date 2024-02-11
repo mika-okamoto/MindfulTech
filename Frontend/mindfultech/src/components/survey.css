@@ -2,12 +2,18 @@
     color: red;
     font-size: 0.8rem;
   }
+#survey-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Set height to 100% of viewport height */
+}
 #rcorners {
   border-radius: 25px;
   background: #dfbef8;
   margin: auto;
-  margin: 20px 100px 10px 100px;
-  padding: 5px 10px 5px 10px;
+  margin: 20px 200px 10px 200px;
+  padding: 5px 0px 5px 0px;
   
 }  
 #bg {
@@ -24,7 +30,6 @@
   float: right;
   text-align: left;
  }
-
 
 .chatbot-icon button {
   position: fixed;
