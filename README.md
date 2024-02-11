@@ -1,4 +1,4 @@
-# MindfulAI: Mental Health in the Tech Workplaces
+# MindfulAI: Mental Health in the Tech Workplace
 
 Identifying and supporting employees at risk for anxiety and mood disorders through data-driven analysis of risk factors and a custom, patient-specific LLM chatbot enhanced with clinical knowledge.
 
