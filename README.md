@@ -2,6 +2,10 @@
 
 Identifying and supporting employees at risk for anxiety and mood disorders through data-driven analysis of risk factors and a custom, patient-specific LLM chatbot enhanced with clinical knowledge.
 
+Created for Hacklytics 2024, hosted at the Georgia Tech College of Computing.
+
+*Team: Alice Wang, Lindsey Zhang, Ansel Erol, Mika Okamoto*
+
 <img width="318" alt="image" Class="center" src="https://github.com/mika-okamoto/MindfulTech/assets/43559753/ee53fe98-641c-479d-ac3b-324322f8bb8b">
 
 # The problem:
