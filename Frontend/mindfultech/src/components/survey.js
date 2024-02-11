@@ -82,7 +82,8 @@ const Survey = () => {
     const errors = {};
     // Age validation
     if (!age || isNaN(age) || age < 0 || age > 150) {
-      errors.age = 'Please enter a valid age.';
+      errors.age = '';
+      // Please enter a valid age.
     }
     // Dropdown validation
     // if (!question5) {
@@ -293,9 +294,14 @@ const Survey = () => {
             </select>
             {/* Error message for question 10 */}
           </div>
-
-          <button type="submit" >Submit</button>
+          <div id="left">
+            <p></p>
+          </div> 
+          <div id="right">
+            <button type="submit" >Submit</button>
+          </div>
         </form>
+        
         <div>
           {!(diagnosis !== 'None' && diagnosis !== 'Anxiety' && diagnosis !== 'Mood') && diagnosis === 'None' && <h2>You are at low risk for mood and anxiety disorders.</h2>}
           {!(diagnosis !== 'None' && diagnosis !== 'Anxiety' && diagnosis !== 'Mood') && diagnosis !== 'None' && <h2>You may be at risk for: {diagnosis}</h2>}
