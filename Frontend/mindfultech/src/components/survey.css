@@ -2,6 +2,25 @@
     color: red;
     font-size: 0.8rem;
   }
+#rcorners {
+  border-radius: 25px;
+  background: #dfbef8;
+  margin: auto;
+  margin: 20px 100px 10px 100px;
+  padding: 5px 10px 5px 10px;
   
+}  
+#bg {
+  background:#f6EEE3;
+}
   /* Add more CSS styles as desired */
-  
+#left {
+  width: 79%; 
+  float:left;
+  text-align: right;
+}
+#right {
+  width: 20%;
+  float: right;
+  text-align: left;
+ }
