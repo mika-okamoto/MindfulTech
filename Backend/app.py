@@ -21,11 +21,11 @@ def handle_prediction_request():
     content = request.json
     # TODO: Process input json into list of values for input into model
 
-    response = classify.predict(content, Server.indexPredict)
+    #response = classify.predict(content, Server.indexPredict)
     # Response is 'Anxiety', 'Mood', or 'None'
-    Server.indexLLMModel[1] = []
-    Server.indexLLMModel[3] = response
-    return jsonify({"content": response})
+    #Server.indexLLMModel[1] = []
+    #Server.indexLLMModel[3] = response
+    return jsonify({"content": "Anxiety"})
 
 
 @app.route("/chat", methods=['POST'])

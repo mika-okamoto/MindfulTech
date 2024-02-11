@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './survey.css'; // Import CSS file for styling
+import { submitSurvey } from '../services/driver';
 
 const Survey = () => {
   const [age, setAge] = useState('');
   const [errors, setErrors] = useState({});
   
   // Additional questions state variables and handle change functions
+  const [diagnosis, setDiagnosis] = useState('');
   const [question2, setQuestion2] = useState('');
   const [question3, setQuestion3] = useState('');
   const [question4, setQuestion4] = useState('');
@@ -17,14 +19,11 @@ const Survey = () => {
   const [question10, setQuestion10] = useState('');
   const [question11, setQuestion11] = useState('');
   const [question12, setQuestion12] = useState('');
-
   // Add more state variables and handle change functions for each additional question
   
   const handleAgeChange = (event) => {
     setAge(event.target.value);
   };
-
-  
   // Handle change functions for additional questions
   const handleQuestion2Change = (event) => {
     setQuestion2(event.target.value);
@@ -71,7 +70,7 @@ const Survey = () => {
   };
   // Add more handle change functions for additional questions
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const errors = {};
     // Age validation
@@ -108,6 +107,19 @@ const Survey = () => {
     setQuestion12('');
     // Reset fields for each additional question
     setErrors({});
+
+    try {
+      const result = await submitSurvey({"1": age, "2" : question2,
+      "3" : question3, "4" : question4, "5" : question5, "6" : question6,
+      "7" : question7, "8" : question8, "9" : question9, "10" : question10,
+      "11" : question11, "12" : question12})
+
+      console.log(result.content)
+      setDiagnosis(result.content)
+
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
   };
 
   return (
@@ -247,7 +259,12 @@ const Survey = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <div>
+        <h2>Diagnosis:</h2>
+        <p>{diagnosis}</p>
+      </div>
     </div>
+    
   );
 };
 

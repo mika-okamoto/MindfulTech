@@ -5,6 +5,6 @@ export const chat = async (chatRequest) => {
     const response = await axios.post(REST_API_BASE_URL + "/chat", chatRequest)
     return response.data }
 
-export const generateText = async (predictRequest) => {
+export const submitSurvey = async (predictRequest) => {
     const response = await axios.post(REST_API_BASE_URL + "/predict", predictRequest)
     return response.data }
