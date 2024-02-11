@@ -3,10 +3,11 @@ from langchain.prompts import PromptTemplate, ChatPromptTemplate
 from langchain_openai import OpenAI, ChatOpenAI
 from langchain.vectorstores import FAISS
 from langchain_community.embeddings.openai import OpenAIEmbeddings
+api_key = open('../api_key.txt').read()
 
 
 def initModel():
-    api_key = open('api_key.txt').read()
+    api_key = open('../api_key.txt').read()
     llm = OpenAI(api_key = api_key)
 
     template = """"You are a helpful and compassionate chatbot explaining about mental health disorders to employees in the tech industry at potential risk.
@@ -28,8 +29,8 @@ def initModel():
     prompt = PromptTemplate.from_template(template)
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     past_questions = []
-    db_anxiety = FAISS.load_local(f'faiss_databases/{"anxiety"}', OpenAIEmbeddings(api_key=api_key))
-    db_mood = FAISS.load_local(f'faiss_databases/{"mood"}', OpenAIEmbeddings(api_key=api_key))
+    db_anxiety = FAISS.load_local(f'../faiss_databases/{"anxiety"}', OpenAIEmbeddings(api_key=api_key))
+    db_mood = FAISS.load_local(f'../faiss_databases/{"mood"}', OpenAIEmbeddings(api_key=api_key))
 
     return [llm_chain, past_questions, [db_anxiety, db_mood], 'Problem']
 
@@ -43,7 +44,7 @@ def chat(question, model):
     if 'quit' in question:
         return 'Thanks! Have a good day.'
 
-    if problem == 'Anxiety':
+    if problem is not None and problem == 'Anxiety':
         db = dbs[0]
     else:
         db = dbs[1]

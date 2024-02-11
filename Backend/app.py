@@ -47,3 +47,5 @@ if __name__ == "__main__":
     # initialize active models
     indexTrain = classify.train()
     indexLLMModel = chat.initModel()
+
+    print(chat.chat("Could you tell me more about phobias?",indexLLMModel))
