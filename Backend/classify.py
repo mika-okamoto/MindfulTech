@@ -11,22 +11,22 @@ def train():
 
     y = df['Label']
     X = df.drop(['Label'], axis=1)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=22)
-    clf = RandomForestClassifier()
-    print(cross_val_score(clf, X, y, cv=3))
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=22)
+    # clf = RandomForestClassifier(min_samples_leaf=4, n_estimators=800)
+    # print(cross_val_score(clf, X, y, cv=3))
 
-    clf = RandomForestClassifier()
-    clf.fit(X_train, y_train)
-    print(classification_report(y_test, clf.predict(X_test)))
+    # clf = RandomForestClassifier(min_samples_leaf=4, n_estimators=800)
+    # clf.fit(X_train, y_train)
+    # print(classification_report(y_test, clf.predict(X_test)))
 
-    clf_full = RandomForestClassifier()
+    clf_full = RandomForestClassifier(min_samples_leaf=4, n_estimators=800)
     clf_full.fit(X, y)
     return clf_full
 
 
 def predict(x_input, model):
     mappings = {
-        -1: "None",
+        0: "None",
         1: "Anxiety",
         2: "Mood"
     }

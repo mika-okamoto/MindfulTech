@@ -133,7 +133,7 @@ def cleanup(df):
 
     df[['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
         'If maybe, what condition(s) do you believe you have?']] = df[['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
-        'If maybe, what condition(s) do you believe you have?']].replace(np.nan, -1)
+        'If maybe, what condition(s) do you believe you have?']].replace(np.nan, 0)
 
     df.replace('\.*mood.*', 2, regex=True, inplace=True)
     df.replace('\.*anxiety.*', 1, regex=True, inplace=True)
@@ -144,11 +144,11 @@ def cleanup(df):
 
     df[['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
         'If maybe, what condition(s) do you believe you have?']] = df[['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
-        'If maybe, what condition(s) do you believe you have?']].replace('\.*', -1, regex=True)
+        'If maybe, what condition(s) do you believe you have?']].replace('\.*', 0, regex=True)
 
     df[['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
         'If maybe, what condition(s) do you believe you have?']] = df[['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
-        'If maybe, what condition(s) do you believe you have?']].replace("[^0-9]", -1, regex=True)
+        'If maybe, what condition(s) do you believe you have?']].replace("[^0-9]", 0, regex=True)
 
     df['Label'] = df[
         ['If so, what condition(s) were you diagnosed with?', 'If yes, what condition(s) have you been diagnosed with?',
