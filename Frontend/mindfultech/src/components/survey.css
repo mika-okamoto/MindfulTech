@@ -24,3 +24,12 @@
   float: right;
   text-align: left;
  }
+
+.chatbot-icon button {
+  position: fixed;
+  bottom: 30px;
+  right: 60px;
+  background-color: transparent;
+  border: none;
+  font-size: 60px;
+}

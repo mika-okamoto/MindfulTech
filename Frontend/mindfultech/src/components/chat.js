@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { chat } from '../services/driver';
 
-const ChatComponent = () => {
+const ChatComponent = ({ setIsChatbotVisible }) => {
   const [inputText, setInputText] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
 
@@ -44,7 +44,7 @@ const ChatComponent = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 chatbot">
       <div className="row justify-content-center">
         <div className="col-md-6"> {/* Central container occupying 6 out of 12 columns */}
           <div className="card">
@@ -76,8 +76,9 @@ const ChatComponent = () => {
                   onChange={(e) => setInputText(e.target.value)}
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-primary" type="button" onClick={sendMessage} style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}>Send</button>
+                  <button className="btn btn-primary" type="button" onClick={sendMessage}>Send</button>
                 </div>
+                <button onClick={() => setIsChatbotVisible(false)}>Close</button>                
               </div>
             </div>
           </div>

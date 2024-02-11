@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import './survey.css'; // Import CSS file for styling
 import { submitSurvey } from '../services/driver';
+import ChatComponent from './chat.js';
 
 const Survey = () => {
   const [age, setAge] = useState('');
   const [errors, setErrors] = useState({});
   
+  const [isChatbotVisible, setIsChatbotVisible] = useState(false); // State for chatbot visibility
+
+  const chatbotPopup = () => {
+    setIsChatbotVisible(true); // Set chatbot visibility to true when button is clicked
+  };
+
   // Additional questions state variables and handle change functions
   const [diagnosis, setDiagnosis] = useState('');
   const [question2, setQuestion2] = useState('');
@@ -124,6 +131,7 @@ const Survey = () => {
 
   return (
     <div id="bg">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
       <br></br>
       <div id="rcorners">
         
@@ -140,6 +148,7 @@ const Survey = () => {
             value={age} 
             onChange={handleAgeChange} 
           />
+          
           {errors.age && <span className="error">{errors.age}</span>}
         </div>
 
@@ -293,8 +302,13 @@ const Survey = () => {
           {diagnosis === 'Anxiety' && <p>We believe that you’re at a heightened risk for anxiety disorders, such as general or social anxiety disorder. Work environments are important determinants of occupational and social wellness; poorly managed stress can truly take its toll on our bodies. If you feel that stress or anxiety prevents you from living your life to its fullest, please reach out to a mental health professional, or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
           {diagnosis === 'Mood' && <p>We believe that you’re at a heightened risk for mood disorders, such as depression or seasonal affective disorder. Work-related stress, when poorly managed, can contribute to fatigue, anxiety, and other symptoms of depression – and given the intense stigma surrounding mental health in tech, it is often difficult for people to seek care. If you feel that your mood prevents you from living your life to its fullest, please reach out to a mental health professional, or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
         </div>
+        
       </div>
       <br></br>
+      {isChatbotVisible && <ChatComponent setIsChatbotVisible={setIsChatbotVisible} />}
+        <div class='chatbot-icon'>
+          <button class="material-symbols-outlined" onClick={chatbotPopup}>comment</button>
+        </div>
     </div>
     
   );
