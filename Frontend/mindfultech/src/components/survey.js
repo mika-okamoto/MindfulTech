@@ -155,7 +155,7 @@ const Survey = () => {
             <option value="6-25">6-25</option>
             <option value="26-100">26-100</option>
             <option value="100-500">101-500</option>
-            <option value="500-1000">501-1000</option>
+            <option value="501-1000">501-1000</option>
             <option value="1000+">1000+</option>
           </select>
           {/* Error message for question 3 */}
@@ -262,6 +262,9 @@ const Survey = () => {
       <div>
         <h2>Diagnosis:</h2>
         <p>{diagnosis}</p>
+        {diagnosis === 'None' && <p>We believe that given your responses, you’re at a low risk for the most common mood and anxiety disorders. If you feel that you need additional support, please speak to a mental health professional or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
+        {diagnosis === 'Anxiety' && <p>We believe that you’re at a heightened risk for anxiety disorders, such as general or social anxiety disorder. Work environments are important determinants of occupational and social wellness; poorly managed stress can truly take its toll on our bodies. If you feel that stress or anxiety prevents you from living your life to its fullest, please reach out to a mental health professional, or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
+        {diagnosis === 'Mood' && <p>We believe that you’re at a heightened risk for mood disorders, such as depression or seasonal affective disorder. Work-related stress, when poorly managed, can contribute to fatigue, anxiety, and other symptoms of depression – and given the intense stigma surrounding mental health in tech, it is often difficult for people to seek care. If you feel that your mood prevents you from living your life to its fullest, please reach out to a mental health professional, or ask our intelligent response service, MindfulAI, follow-up questions.</p>}
       </div>
     </div>
     
