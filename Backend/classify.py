@@ -3,6 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import classification_report, f1_score
 from cleanup import cleanup
+import numpy as np
 
 
 def train():
@@ -25,9 +26,13 @@ def train():
 
 
 def predict(x_input, model):
+    x_input.pop(4)
+    x_input = np.array(x_input)
+    x_input = x_input.reshape(1, -1)
+    print(x_input)
     mappings = {
         0: "None",
         1: "Anxiety",
         2: "Mood"
     }
-    return mappings[model.predict(x_input)]
+    return mappings[model.predict(x_input)[0]]

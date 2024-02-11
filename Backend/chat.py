@@ -17,7 +17,7 @@ def initModel():
     
     (if the context is irrelevant, ignore it and answer to the best of your abilities)
     
-    Information about the person: 
+    This person's survey answers:
     {survey}
     
     Their Past Prompts: {past_qs}
@@ -32,7 +32,7 @@ def initModel():
     db_anxiety = FAISS.load_local(f'../faiss_databases/{"anxiety"}', OpenAIEmbeddings(api_key=api_key))
     db_mood = FAISS.load_local(f'../faiss_databases/{"mood"}', OpenAIEmbeddings(api_key=api_key))
 
-    return [llm_chain, past_questions, [db_anxiety, db_mood], 'Problem']
+    return [llm_chain, past_questions, [db_anxiety, db_mood], 'Problem', ""]
 
 
 def chat(question, model):
@@ -40,6 +40,7 @@ def chat(question, model):
     past_questions = model[1]
     dbs = model[2]
     problem = model[3]
+    survey = model[4]
 
     if 'quit' in question:
         return 'Thanks! Have a good day.'
@@ -57,7 +58,7 @@ def chat(question, model):
     for i in past_questions:
         memory_content += i + "\n"
 
-    ans = llm_chain.invoke({'disorder': problem, 'disorder_context': context, 'survey': "", 'question': question,
+    ans = llm_chain.invoke({'disorder': problem, 'disorder_context': context, 'survey': survey, 'question': question,
                             'past_qs': memory_content})['text']
 
     past_questions.append(question)

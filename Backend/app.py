@@ -19,7 +19,6 @@ class Server:
 @app.route("/predict", methods=['POST'])
 def handle_prediction_request():
     content = request.json
-    # TODO: Process input json into list of values for input into model
     print(content)
     genders = {
         'male': 0,
@@ -85,11 +84,21 @@ def handle_prediction_request():
              sharing[content.get('11')], productivity[content.get('12')]]
     print(formatted)
 
-    # response = classify.predict(content, Server.indexPredict)
+    survey = f"Age: {content.get('1')}\nGender: {content.get('2')}\nNumber of Employees at Company: {content.get('3')}\n" + \
+                f"Does remote work: {content.get('4')}\nFamily history of mental disorders: {content.get('6')}\n" + \
+                f"Does your employer offer resources to learn more about mental health concerns and options for seeking help?: {content.get('7')}\n" + \
+                f"Do you think that discussing a mental health disorder with your employer would have negative consequences?: {content.get('8')}\n" + \
+                f"Would you feel comfortable discussing a mental health disorder with your fellow employees?: {content.get('9')}\n" + \
+                f"Do you feel that being identified as a person with a mental health issue would hurt your career?: {content.get('10')}\n" + \
+                f"How willing would you be to share with friends and family that you have a mental illness?: {content.get('11')}\n" + \
+                f"Do you believe your productivity/work is ever affected by a mental health issue?: {content.get('12')}"
+    
+    response = classify.predict(formatted, Server.indexPredict)
     # Response is 'Anxiety', 'Mood', or 'None'
-    # Server.indexLLMModel[1] = []
-    # Server.indexLLMModel[3] = response
-    return jsonify({"content": "Anxiety"})
+    Server.indexLLMModel[1] = []
+    Server.indexLLMModel[3] = response
+    Server.indexLLMModel[4] = survey
+    return jsonify({"content": response})
 
 
 @app.route("/chat", methods=['POST'])
@@ -104,6 +113,7 @@ def handle_chat_request():
 def reset():
     Server.indexLLMModel[1] = []
     Server.indexLLMModel[3] = None
+    Server.indexLLMModel[4] = ""
 
 
 if __name__ == "__main__":
