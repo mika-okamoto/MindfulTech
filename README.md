@@ -6,6 +6,9 @@ Created for Hacklytics 2024, hosted at the Georgia Tech College of Computing.
 
 *Team: Alice Wang, Lindsey Zhang, Ansel Erol, Mika Okamoto*
 
+[Devfolio Link](https://devfolio.co/projects/mindfultech-9e49)
+[Demo Video](https://www.youtube.com/watch?v=TEafBfuxX-o)
+
 <img width="318" alt="image" Class="center" src="https://github.com/mika-okamoto/MindfulTech/assets/43559753/ee53fe98-641c-479d-ac3b-324322f8bb8b">
 
 # The problem:
@@ -25,6 +28,12 @@ Creating a multi-level, technologically-sophisticated web-application over the c
 **Data:** data on mental health in technology is rare – the largest and most comprehensive dataset was from Open Sourcing Mental Illness and was highly disorganized. With arbitrary response formatting and vague questions, we had a tedious cleanup task ahead. We excluded implausible entries (including employees of ages 3 and 324), aggregated questions that were dependent on others (‘if so…’), and painstakingly interpreted text fields as rescaled and normalized numerical values.
 
 **Predictive Modeling:** We experimented with numerous models ranging from ensemble learning to neural nets, before selecting random forests – semantically suitable due to hierarchical question structures. At first, we encountered deceptively high model accuracy and F1-score, which we identified as misleading due to bias introduced during response collection. After imputing misleading data, accuracy was lowered substantially, though some lost accuracy was recovered after fine-tuning.
+
+Demo Images:
+![image](https://github.com/mika-okamoto/MindfulTech/assets/40896683/f1d69774-22f3-4c1b-9ff8-f9880cd2146a)
+![image](https://github.com/mika-okamoto/MindfulTech/assets/40896683/eb01ff03-40a2-4d77-bc14-82be356a8fb2)
+
+
 
 **Generative AI**: A jig-saw within the larger web-dev puzzle, with an objective of personalized, context-specific, and relevant answers for users. Faced with poor documentation and limited practical experience, we endeavored to stitch numerous APIs while incorporating state-of-the-art research in retrieval augmented generation (combining real-world, user-specific knowledge into the large-language-model). Ultimately, leveraging a combination of custom memory modules of past conversations when we could not work around the pre-built, along with clever prompt-engineering to overcome token limits, we created a language model that we believe effectively addressed user needs — see for yourself!
 
